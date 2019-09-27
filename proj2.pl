@@ -49,3 +49,20 @@ diagonal_to_list([Row|Remain], [D|Output], Count) :-
 
 % ****************************************************************************
 % check constraint 3 with transpose/2
+
+% This predicate aim to check a row is valid or not, true for valid.
+% This predicate works only when Header and Row are all bounded.
+valid_row([Header|Row]) :- 
+    ((sum_list(Row, Sum), Header = Sum)->
+        true;
+    (product_list(Row, Product), Header = Product)
+    ).
+
+
+% This predicate only works when List is bounded.
+% Res is the product of all the element in List. 
+product_list(List, Res) :- product_list(List, 1, Res).
+product_list([], Res, Res).
+product_list([X|XS], PrevResult, Acc) :-
+    Result is X*PrevResult,
+    product_list(XS, Result, Acc).
