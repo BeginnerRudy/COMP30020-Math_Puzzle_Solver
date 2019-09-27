@@ -13,10 +13,28 @@
 % Constraint 3: the header should be the sum or product of its row/column
 % puzzle_solution([ColumnHeader|Puzzle]).
 
-% check constraint 2
-% check constraint 3 with transpose/2
+% ****************************************************************************
+% check constraint 1: elems of each row/column should be different.
+distinct_list([]).
+distinct_list([X|XS]) :- 
+    \+ member(X, XS),
+    distinct_list(XS).
 
-% diagonal_same(Original, Result).
+% ****************************************************************************
+% check constraint 2: all elems of the diagonal should be same.
+
+% This predicate aims to check the constraint of all elements of the diagnoal 
+% of the puzzel should be same.
+% Mode: same_diagnoal(Puzzel), Puzzel is bou 
+same_diagonal(Puzzel) :- 
+    diagonal_to_list(Puzzel, Output), identical_list(Output). 
+
+% This predicate works both when the arg is ground or unground.
+% The aim of this predicate is to check when all elements of the given list
+% could be unified or not.
+identical_list([X|XS]) :- identical_list(X, XS).
+identical_list(_, []).
+identical_list(Elt, [X|XS]) :- Elt = X, identical_list(Elt, XS).
 
 % This predicate only works when Input is bounded with a Puzzel and 
 % Output is unbounded.
@@ -28,3 +46,6 @@ diagonal_to_list([Row|Remain], [D|Output], Count) :-
     nth0(Count, Row, D),
     Next_count is Count + 1,
     diagonal_to_list(Remain, Output, Next_count).
+
+% ****************************************************************************
+% check constraint 3 with transpose/2
