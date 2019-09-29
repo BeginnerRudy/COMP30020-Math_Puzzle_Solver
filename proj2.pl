@@ -16,8 +16,8 @@ puzzle_solution(Puzzle_Row) :-
     transpose(Puzzle_Row, Puzzle_Col),
     one_to_nine(Puzzle_Row),
     distinct_row(Puzzle_Row), distinct_row(Puzzle_Col),
-    validate_rows(Puzzle_Row), validate_rows(Puzzle_Col).
-    % maplist(label, Puzzle_Row).
+    validate_rows(Puzzle_Row), validate_rows(Puzzle_Col),
+    maplist(label, Puzzle_Row).
     
 
 
