@@ -33,7 +33,6 @@ Here is an example puzzle as posed (left) and solved (right):
 | 28 |    |    |    |  | 28 |  1 |  1 |  7 |
  ---- ---- ---- ----    ---- ---- ---- ----  
 ```
- (^ As shown in the Project Specification)
 
 The 'Puzzle' referred to in predicates defined below is an NxN list of lists
 of equal length that fit the specification above and below.
