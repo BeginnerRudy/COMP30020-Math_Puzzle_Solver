@@ -11,14 +11,34 @@
 % Constraint 1: entry in same row/column must be different
 % Constraint 2: the diagonal line should be same
 % Constraint 3: the header should be the sum or product of its row/column
-% puzzle_solution([ColumnHeader|Puzzle]).
+puzzle_solution(Puzzle_Row) :-
+    same_diagonal(Puzzle_Row),
+    transpose(Puzzle_Row, Puzzle_Col),
+    one_to_nine(Puzzle_Row),
+    distinct_row(Puzzle_Row), distinct_row(Puzzle_Col),
+    validate_rows(Puzzle_Row), validate_rows(Puzzle_Col).
+    % maplist(label, Puzzle_Row).
+    
+
 
 % ****************************************************************************
-% check constraint 1: elems of each row/column should be different.
-distinct_list([]).
-distinct_list([X|XS]) :- 
-    \+ member(X, XS),
-    distinct_list(XS).
+% Constraint 0: 
+%       each to be filled in with a single digit 1–9 (0 is not permitted).
+
+one_to_nine(Puzzel) :- 
+    Puzzel = [[_|Header_Column]|Rows],
+    maplist(#=<(1), Header_Column),
+    maplist(one_to_nine_row, Rows).
+    
+
+one_to_nine_row([Header|Row]) :-
+    Row ins 1..9,
+    Header #>= 1.
+    
+% ****************************************************************************
+% Constraint 1: each element in row should be distinct.
+distinct_row([_|Row]) :- maplist(all_distinct, Row).
+
 
 % ****************************************************************************
 % check constraint 2: all elems of the diagonal should be same.
@@ -52,17 +72,16 @@ diagonal_to_list([Row|Remain], [D|Output], Count) :-
 
 % This predicate aim to check a row is valid or not, true for valid.
 % This predicate works only when Header and Row are all bounded.
-valid_row([Header|Row]) :- 
-    ((sum_list(Row, Sum), Header = Sum)->
-        true;
-    (product_list(Row, Product), Header = Product)
-    ).
+validate_rows([_|Rows]) :- maplist(validate_header, Rows). 
 
+
+validate_header([Header|Row]) :- sum(Row, #=, Header).
+validate_header([Header|Row]) :- product_list(Row, Header).
 
 % This predicate only works when List is bounded.
 % Res is the product of all the element in List. 
 product_list(List, Res) :- product_list(List, 1, Res).
 product_list([], Res, Res).
 product_list([X|XS], PrevResult, Acc) :-
-    Result is X*PrevResult,
+    Result #= X*PrevResult,
     product_list(XS, Result, Acc).
