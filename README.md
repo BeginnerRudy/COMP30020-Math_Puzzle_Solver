@@ -4,8 +4,12 @@ The project 2 of subject COMP30020 Declarative Programming, an auto math puzzle 
 # Overview
 
 # Importatn Prolog library predicates
-1. #=/2
+1. #=/2 
+  - https://www.swi-prolog.org/pldoc/man?section=clpfd-arith-constraints
+  - https://stackoverflow.com/questions/36382450/what-does-mean-in-prolog 
 2. label/1
+  - https://www.swi-prolog.org/man/clpfd.html#labeling/2
+  - https://stackoverflow.com/questions/27216247/i-dont-understand-what-label-does-in-prolog
 
 # Maths Puzzle
 ### Game Description
