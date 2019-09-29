@@ -63,11 +63,9 @@
 % 
 % ****************************************************************************
 
-
 % ******************************START OF PROGRAM******************************
 % 
 % puzzle_solution/1 uses predicates defined below to solve the given Puzzle.
-% 
 % puzzle_solution/1 takes a Puzzle as input and would fill in the puzzle with 
 % correct solution if there is a correct solution. Otherwise, puzzle_solution/1
 %  would give false.
@@ -82,7 +80,7 @@
 % - ensure each row & column, except header contains distinct elements
 %       (satisfy constraint 2).
 % - ensure headers of each row and column are valid. (satisfy constaint 4).
-% - finally, make sure every variable in the puzzle is ground.        
+% - finally, make sure every variable in the puzzle is ground by label/1.        
 puzzle_solution(Puzzle_Row) :-
     same_diagonal(Puzzle_Row),
     transpose(Puzzle_Row, Puzzle_Col),
@@ -174,6 +172,8 @@ identical_list(Elt, [X|XS]) :- Elt = X, identical_list(Elt, XS).
 % Mode: only works when Puzzle is given.
 validate_rows([_|Rows]) :- maplist(validate_header, Rows). 
 
+% validate_header/1 takes a row as input and hold when constraint 4 holds.
+% Mode: only works when [Header|Row] is given.
 validate_header([Header|Row]) :- sum(Row, #=, Header).
 validate_header([Header|Row]) :- product_list(Row, Header).
 
