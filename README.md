@@ -2,6 +2,7 @@
 The project 2 of subject COMP30020 Declarative Programming, an auto math puzzle solver written in prolog.
 
 # Overview
+This program aims to provide a predicate called puzzle_solution/1 to automatically solve the given puzzle efficiently and correctly. puzzle_solution/1 would fill in the puzzle with correct solution if there is a correct solution. Otherwise, puzzle_solution/1 would give false. 
 
 # Importatn Prolog library predicates
 1. #=/2 
