@@ -1,4 +1,4 @@
-# COMP30020-Math_Puzzle_Solver
+# Auto Math Puzzle Solver
 The project 2 of subject COMP30020 Declarative Programming, an auto math puzzle solver written in prolog.
 
 # Overview
