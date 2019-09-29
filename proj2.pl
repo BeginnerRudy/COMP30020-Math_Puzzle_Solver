@@ -75,10 +75,12 @@
 % 
 % Process of the puzzle_solution/1:
 % - ensure all squares on the diagonal are same (satisfy contraint 3).
-% - apply transpose/2 to get the column. of Puzzle as rows.
+% - apply transpose/2 to get the column. of Puzzle as rows. Since in this 
+%       program, only predicate for rows are implemented, transfer columns
+%       to rows, in order apply those predicates to them as well.
 % - ensure each square is 1 - 9, inclusive. (satisfy constraint 1)
 % - ensure each row & column, except header contains distinct elements
-%           (satisfy constraint 2).
+%       (satisfy constraint 2).
 % - ensure headers of each row and column are valid. (satisfy constaint 4).
 % - finally, make sure every variable in the puzzle is ground.        
 puzzle_solution(Puzzle_Row) :-
@@ -172,7 +174,6 @@ identical_list(Elt, [X|XS]) :- Elt = X, identical_list(Elt, XS).
 % Mode: only works when Puzzle is given.
 validate_rows([_|Rows]) :- maplist(validate_header, Rows). 
 
-
 validate_header([Header|Row]) :- sum(Row, #=, Header).
 validate_header([Header|Row]) :- product_list(Row, Header).
 
@@ -193,6 +194,7 @@ product_list([X|XS], PrevResult, Acc) :-
 % In the end, ensure all the variables are all bounded to be ground terms.
 % 
 % var_all_ground/1 takes a Puzzle as input and holds when all the variable in
-% the Puzzle are gound.
+% the Puzzle are gound, since the _Header are assumed to be gronud, exclude it 
+% for ground varuable testing.
 var_all_ground([_Header|Body]) :- maplist(label, Body).
 % **********************************THE END***********************************
