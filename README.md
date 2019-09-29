@@ -3,8 +3,8 @@ The project 2 of subject COMP30020 Declarative Programming, an auto math puzzle 
 
 # Overview
 
-# Prolog library predicates
-1. #=
+# Importatn Prolog library predicates
+1. #=/2
 2. label/1
 
 # Maths Puzzle
