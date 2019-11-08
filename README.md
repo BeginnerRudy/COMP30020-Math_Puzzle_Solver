@@ -66,3 +66,7 @@ fail, and it should never succeed with a puzzle argument that is not a valid
 solution."
 
 # Result
+- Correctness : 70/70
+- Code Quality: 28/30 
+- Total       : 98/100
+
